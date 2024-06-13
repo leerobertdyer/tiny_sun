@@ -13,7 +13,7 @@ export default function Header() {
       flex-col
       justify-around
       items-center
-      border-b-4
+      border-b-2
       border-tinyBlue-dark
       w-screen
       "

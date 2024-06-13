@@ -15,12 +15,13 @@ const config: Config = {
           dark: "#b95e00",
         },
         tinyPink: {
+          lighter: "#fac3e3",
           light: "#eda6d0",
           base: "#e381ba",
           dark: "#e0389a",
         },
         tinyBlue: {
-          light: "#ffaaaa",
+          light: "#7ed3ed",
           base: "#18a2c4",
           dark: "#0e6b8b",
         },

@@ -26,10 +26,10 @@ export default function Header() {
           border-[2px] 
           border-tinyOrange-base
           rounded-2xl
-          text-white
+          bg-white
           text-center
           p-4
-          bg-tinyBlack-base
+          text-tinyBlack-base
           w-[90vw]
           lg:w-[60vw]
           "

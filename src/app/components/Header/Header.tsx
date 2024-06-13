@@ -23,47 +23,41 @@ export default function Header() {
           flex
           justify-between
           gap-4
-          border-[4px] 
-          border-tinyPink-dark
+          border-[2px] 
+          border-tinyOrange-base
           rounded-2xl
           text-white
           text-center
           p-4
           bg-tinyBlack-base
           w-[90vw]
-          md:w-[60vw]
+          lg:w-[60vw]
           "
         >
-          <Image
-            src="/images/tinySunLogo.png"
-            width={125}
-            height={125}
-            alt="Tiny Sun Logo"
-            className="
-            overflow-hidden
-            rounded-xl
-            border-2
-            border-white
-            "
-          />
-          <div className="flex flex-col justify-center gap-6">
-            <h1 className="text-[1.5rem] md:text-[3.5rem] text-tinyOrange-base">
+          <div className="w-[15vw] h-[15vw] max-w-[100px] max-h-[100px] overflow-hidden border-2 border-white rounded-xl">
+            <Image
+              src="/images/tinySunLogo.png"
+              width={125}
+              height={125}
+              alt="Tiny Sun Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col justify-center lg:gap-6">
+            <h1 className="text-[1.5rem] lg:leading-[1.5rem] md:text-[2.5rem] lg:text-[3.5rem] text-tinyOrange-base">
               Tiny Sun
             </h1>
-            <h2 className="md:text-2xl">Music Production</h2>
+            <h2 className="text-md sm:text-lg lg:text-2xl">Music Production</h2>
           </div>
-          <Image
-            src="/images/tinySunLogo.png"
-            width={125}
-            height={125}
-            alt="Tiny Sun Logo"
-            className="
-            overflow-hidden
-            rounded-xl
-            border-2
-            border-white
-            "
-          />
+          <div className="w-[15vw] h-[15vw] max-w-[100px] max-h-[100px] overflow-hidden border-2 border-white rounded-xl">
+            <Image
+              src="/images/tinySunLogo.png"
+              width={125}
+              height={125}
+              alt="Tiny Sun Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
         <Nav links={["Home", "About", "Services", "Contact"]} />
       </div>

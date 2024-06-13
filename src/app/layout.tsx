@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Corben, Inter } from "next/font/google";
+import { Corben } from "next/font/google";
+import { GoogleTagManager } from '@next/third-parties/google'
 import "./globals.css";
 
 const corben = Corben({ weight: '400', subsets: ['latin'] });
@@ -16,7 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={corben.className}>{children}</body>
+      <GoogleTagManager gtmId='G-GLQHP1SSNB' />
+      <body className={`tracking-wide ${corben.className}`}>{children}</body>
     </html>
   );
 }

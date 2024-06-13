@@ -9,7 +9,7 @@ export default function MainLayout({ children }: PropsDefinition) {
     <div
       className="
     w-screen
-    h-screen
+    h-[100%]
   bg-tinyBlack-base 
   text-white 
   "

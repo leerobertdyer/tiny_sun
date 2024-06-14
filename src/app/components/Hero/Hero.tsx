@@ -44,19 +44,67 @@ export default function Hero() {
           </Button>
         </div>
       </div>
-      <div className="
-      w-[55vw] h-[55vw] 
-      m-auto overflow-hidden
+      <div className="flex items-center justify-evenly">
+        <p
+          className="
+      text-tinyOrange-base text-2xl 
+      bg-tinyBlack-base bg-opacity-45
+      p-4
+      rounded-full"
+          aria-hidden
+        >
+          Hello
+        </p>
+        <div
+          className="
+      w-[40vw] h-[40vw] 
+      overflow-hidden
       mt-4 
-      rounded-full">
-        <Image
-          src="/images/layingOnPiano.jpeg"
-          alt="Lee laying on a piano"
-          width={1000}
-          height={750}
-          className="w-full h-full object-cover"
-        />
+      border-[4px] border-white border-double
+      rounded-full"
+        >
+          <Image
+            src="/images/layingOnPiano.jpeg"
+            alt="Lee laying on a piano"
+            width={1000}
+            height={750}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <p
+          className="
+      text-tinyOrange-base text-2xl 
+      bg-tinyBlack-base bg-opacity-45
+      p-4
+      rounded-full"
+          aria-hidden
+        >
+          there!
+        </p>
       </div>
+<div className="
+flex flex-col 
+items-center justify-center 
+bg-white bg-opacity-85
+rounded-xl
+w-[50vw] mx-auto my-4 p-4
+text-tinyBlack-base
+text-center text-xl">
+  <p>
+    I{`'`}m Lee Dyer
+    </p>
+  <p>
+    I produce <span className="text-tinyPink-light text-2xl">
+    Real Music
+    </span>
+    </p>
+    <p>
+      for 
+      <span className="text-tinyBlue-base text-2xl">
+      Wild Folks
+      </span>
+      </p> 
+</div>
     </>
   );
 }

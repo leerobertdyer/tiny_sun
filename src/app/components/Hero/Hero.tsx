@@ -21,7 +21,7 @@ export default function Hero() {
         bg-white 
         bg-opacity-80
         text-tinyOrange-base
-        w-full text-center py-4 "
+        w-full text-center py-4 mb-4"
         >
           Organic music
           <hr className="w-1/2 mx-auto border-t-2 border-tinyBlue-base mt-[5px]" />
@@ -44,22 +44,17 @@ export default function Hero() {
           </Button>
         </div>
       </div>
-      <div className="flex items-center justify-evenly">
-        <p
-          className="
-      text-tinyOrange-base text-2xl 
-      bg-tinyBlack-base bg-opacity-45
-      p-4
-      rounded-full"
-          aria-hidden
-        >
-          Hello
-        </p>
+      <div
+        className="
+      flex flex-col sm:flex-row items-center justify-evenly 
+      bg-tinyBlue-light bg-opacity-50
+      p-8 gap-4"
+      >
         <div
           className="
       w-[40vw] h-[40vw] 
+      min-w-[18rem] min-h-[18rem]
       overflow-hidden
-      mt-4 
       border-[4px] border-white border-double
       rounded-full"
         >
@@ -71,40 +66,38 @@ export default function Hero() {
             className="w-full h-full object-cover"
           />
         </div>
-        <p
+        <article
           className="
-      text-tinyOrange-base text-2xl 
-      bg-tinyBlack-base bg-opacity-45
-      p-4
-      rounded-full"
-          aria-hidden
+        flex flex-col 
+        items-center justify-center 
+        bg-white bg-opacity-85
+        rounded-xl
+        w-[90vw] sm:w-[50vw] mx-auto my-4 p-4
+        text-tinyBlack-base
+        text-center text-xl"
         >
-          there!
-        </p>
+          <p>Hi, I{`'`}m Lee Dyer</p>
+          <p>
+            I{`'`}m a musician, composer, and producer. I specialize in
+            transforming acoustic singer-songwriter music into
+            <span className="text-tinyBlue-base md:text-3xl block">
+              full band arrangements
+            </span>
+            Whether that means adding
+            <span className="bg-tinyBlack-base bg-opacity-75 text-tinyPink-light block rounded-xl p-4 text-sm my-2">
+              drums, bass, electric guitar, keyboard...
+            </span>
+            or perhaps
+            <span className="bg-tinyBlack-base bg-opacity-75 text-tinyBlue-light block rounded-xl p-4 text-sm my-2">
+              washboard, banjo, accordion...
+            </span>
+            or even
+            <span className="bg-tinyBlack-base bg-opacity-75 text-tinyOrange-light block rounded-xl p-4 text-sm my-2">
+              pedal steel, fiddle, harmonica...
+            </span>
+          </p>
+        </article>
       </div>
-<div className="
-flex flex-col 
-items-center justify-center 
-bg-white bg-opacity-85
-rounded-xl
-w-[50vw] mx-auto my-4 p-4
-text-tinyBlack-base
-text-center text-xl">
-  <p>
-    I{`'`}m Lee Dyer
-    </p>
-  <p>
-    I produce <span className="text-tinyPink-light text-2xl">
-    Real Music
-    </span>
-    </p>
-    <p>
-      for 
-      <span className="text-tinyBlue-base text-2xl">
-      Wild Folks
-      </span>
-      </p> 
-</div>
     </>
   );
 }

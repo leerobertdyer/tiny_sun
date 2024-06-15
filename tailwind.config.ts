@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         tinyOrange: {
-          light: "#ffaaaa",
+          light: "#ff9a1f",
           base: "#de6f00",
           dark: "#b95e00",
         },

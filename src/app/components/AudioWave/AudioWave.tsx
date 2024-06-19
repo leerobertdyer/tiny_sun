@@ -4,13 +4,23 @@ import WaveSurfer from "wavesurfer.js";
 
 type PropsDefinition = {
   src: string;
+  onPlayPause: () => void;
+  reset: boolean;
+  isPlaying?: boolean;
 };
 
-export default function AudioWave({ src }: PropsDefinition) {
+export default function AudioWave({ src, isPlaying=false, onPlayPause, reset }: PropsDefinition) {
   const waveformRef = useRef(null);
   const waveSurferRef = useRef<WaveSurfer | null>(null);
 
   const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (waveSurferRef.current) {
+      waveSurferRef.current.seekTo(0);
+      waveSurferRef.current.pause();
+    }
+  }, [reset]);
 
   useEffect(() => {
     if (waveformRef.current && !waveSurferRef.current) {
@@ -20,32 +30,33 @@ export default function AudioWave({ src }: PropsDefinition) {
         progressColor: "#0e6b8b",
         cursorWidth: 4,
         cursorColor: "#e0389a",
+        height: 60,
         url: src,
-        barWidth: 4,
+        barWidth: 3,
         barRadius: 50,
         barGap: 2,
       });
     }
+
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.code === "Space") {
         event.preventDefault();
-        if (isHovered) handlePlayPause();
-        
+        if (isHovered) onPlayPause();
       }
     };
+
+    if (isPlaying) {
+      waveSurferRef.current?.play();
+    } else {
+      waveSurferRef.current?.pause();
+    }
 
     window.addEventListener("keydown", handleKeydown);
 
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  }, [isHovered, src]);
-
-  const handlePlayPause = () => {
-    if (waveSurferRef.current) {
-      waveSurferRef.current.playPause();
-    }
-  };
+  }, [isHovered, src, isPlaying, onPlayPause]);
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -58,7 +69,7 @@ export default function AudioWave({ src }: PropsDefinition) {
   return (
     <div
       className="
-    w-[90vw] sm:w-[60vw] m-auto 
+    w-full
     bg-white 
     rounded-md p-2 my-[2px]
     hover:cursor-pointer
@@ -67,8 +78,9 @@ export default function AudioWave({ src }: PropsDefinition) {
     >
       <div
         id="waveform"
+        className="h-[4rem]"
         ref={waveformRef}
-        onDoubleClick={() => handlePlayPause()}
+        onDoubleClick={() => onPlayPause()}
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}
       ></div>

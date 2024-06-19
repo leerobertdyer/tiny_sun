@@ -9,14 +9,16 @@ export default function Home() {
         className="
     w-screen
     bg-[url('/images/vintageFlowers9.jpg')]
-    bg-cover"
+    bg-cover
+    pb-[4rem]"
       >
         <Header />
         <Hero />
         <AudioPlayer songs={[
-          {title: 'Viktor', src: "/audio/viktor.mp3"},
-          {title: 'Viktor1', src: "/audio/viktor.mp3"},
-          {title: 'Viktor2', src: "/audio/viktor.mp3"}
+          {title: 'Viktor', artist: 'Tiny Sun', src: "/audio/viktor.mp3"},
+          {title: 'Snakeskin', artist: "Kathryn O'Shea", src: "/audio/snakeskin.mp3", img: '/images/snakeskin.jpeg'},
+          {title: 'Ageless', artist: 'Tiny Sun', src: "/audio/ageless.mp3", img: '/images/ageless.jpeg'},
+          {title: 'Change In The Chemical', artist: 'Daniel Glenn Campbell', src: "/audio/changeInTheChemical.mp3", img: '/images/strange.jpeg'},
           ]} />
       </main>
     </>

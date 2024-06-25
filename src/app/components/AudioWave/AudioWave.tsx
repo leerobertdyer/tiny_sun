@@ -16,7 +16,7 @@ export default function AudioWave({
   onPlayPause,
   reset,
 }: PropsDefinition) {
-  const waveformRef = useRef(null);
+  const waveContainer = useRef(null);
   const waveSurferRef = useRef<WaveSurfer | null>(null);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -30,9 +30,9 @@ export default function AudioWave({
   }, [reset]);
 
   useEffect(() => {
-    if (waveformRef.current && !waveSurferRef.current) {
+    if (waveContainer.current && !waveSurferRef.current) {
       waveSurferRef.current = WaveSurfer.create({
-        container: waveformRef.current,
+        container: waveContainer.current,
         waveColor: "#FF9A1F",
         progressColor: "#0e6b8b",
         cursorWidth: 4,
@@ -47,7 +47,7 @@ export default function AudioWave({
 
     waveSurferRef.current?.on("ready", () => {
       setIsReady(true);
-    })
+    });
 
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.code === "Space") {
@@ -67,7 +67,12 @@ export default function AudioWave({
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  }, [isHovered, src, isPlaying, onPlayPause]);
+  }, [
+    isHovered,
+    src,
+    isPlaying,
+    onPlayPause,
+  ]);
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -90,7 +95,7 @@ export default function AudioWave({
       <div
         id="waveform"
         className="h-[4rem]"
-        ref={waveformRef}
+        ref={waveContainer}
         onDoubleClick={() => onPlayPause()}
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}

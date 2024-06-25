@@ -59,6 +59,7 @@ export default function Hero() {
       rounded-full"
         >
           <Image
+            priority
             src="/images/layingOnPiano.jpeg"
             alt="Lee laying on a piano"
             width={1000}

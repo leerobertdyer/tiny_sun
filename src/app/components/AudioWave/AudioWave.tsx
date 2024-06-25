@@ -1,4 +1,5 @@
 "use client";
+import LoadingWheel from "@/app/components/LoadingWheel/LoadingWheel";
 import { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 
@@ -9,11 +10,17 @@ type PropsDefinition = {
   isPlaying?: boolean;
 };
 
-export default function AudioWave({ src, isPlaying=false, onPlayPause, reset }: PropsDefinition) {
+export default function AudioWave({
+  src,
+  isPlaying = false,
+  onPlayPause,
+  reset,
+}: PropsDefinition) {
   const waveformRef = useRef(null);
   const waveSurferRef = useRef<WaveSurfer | null>(null);
 
   const [isHovered, setIsHovered] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (waveSurferRef.current) {
@@ -37,6 +44,10 @@ export default function AudioWave({ src, isPlaying=false, onPlayPause, reset }: 
         barGap: 2,
       });
     }
+
+    waveSurferRef.current?.on("ready", () => {
+      setIsReady(true);
+    })
 
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.code === "Space") {
@@ -83,7 +94,9 @@ export default function AudioWave({ src, isPlaying=false, onPlayPause, reset }: 
         onDoubleClick={() => onPlayPause()}
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}
-      ></div>
+      >
+        {!isReady && <LoadingWheel />}
+      </div>
     </div>
   );
 }

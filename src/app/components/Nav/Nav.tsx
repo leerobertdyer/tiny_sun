@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 type PropsDefinition = {
   links: string[];
@@ -9,10 +8,6 @@ type PropsDefinition = {
 
 export default function Nav({ links }: PropsDefinition) {
   const path = usePathname();
-
-  useEffect(() => {
-    console.log("path: ", path);
-  }, [path]);
 
   return (
     <>

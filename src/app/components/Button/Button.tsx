@@ -11,7 +11,6 @@ export default function Button({ children, type, onClick }: PropsDefinition) {
     switch (type) {
         case 'primary':
             buttonClass += "bg-tinyBlue-base flex gap-2 justify-center items-center w-[10rem] hover:bg-tinyBlue-light";
-            console.log(buttonClass)
             break;
         case 'secondary':
             buttonClass += "text-[10px] bg-tinyPink-light flex gap-2 justify-center items-center w-[10rem] hover:bg-tinyPink-lighter";

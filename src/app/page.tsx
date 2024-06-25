@@ -1,7 +1,6 @@
-import AudioPlayer from "@/app/components/AudioPlayer/AudioPlayer";
-import BeforeAndAfter from "@/app/components/BeforeAndAfter/BeforeAndAfter";
-import Header from "@/app/components/Header/Header";
-import Hero from "@/app/components/Hero/Hero";
+import BeforeAndAfterPlayer from "@/components/BeforeAndAfterPlayer/BeforeAndAfterPlayer";
+import Header from "@/components/Header/Header";
+import Hero from "@/components/Hero/Hero";
 
 export default function Home() {
   return (
@@ -15,13 +14,7 @@ export default function Home() {
       >
         <Header />
         <Hero />
-        <BeforeAndAfter song1src="/audio/beforeViktor.m4a" song2src="/audio/viktor.mp3" title="Viktor" artist="Tiny Sun" img="/images/snakeskin.jpeg" />
-        <AudioPlayer songs={[
-          {title: 'Viktor', artist: 'Tiny Sun', src: "/audio/viktor.mp3"},
-          {title: 'Snakeskin', artist: "Kathryn O'Shea", src: "/audio/snakeskin.mp3", img: '/images/snakeskin.jpeg'},
-          {title: 'Ageless', artist: 'Tiny Sun', src: "/audio/ageless.mp3", img: '/images/ageless.jpeg'},
-          {title: 'Change In The Chemical', artist: 'Daniel Glenn Campbell', src: "/audio/changeInTheChemical.mp3", img: '/images/strange.jpeg'},
-          ]} />
+        <BeforeAndAfterPlayer />
       </main>
     </>
   );

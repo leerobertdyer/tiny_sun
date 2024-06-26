@@ -1,0 +1,30 @@
+
+/* UNCHECKED background */
+  .customToggle.react-toggle .react-toggle-track {
+    background-color: #333333;
+  }
+
+/* CHECKED background */
+  .customToggle.react-toggle--checked .react-toggle-track {
+    background-color: #eda6d0;
+  }
+  
+
+/* UNCHECKED HOVERED background */
+  .customToggle.react-toggle:hover:not(.react-toggle--checked) .react-toggle-track {
+      background-color: #242424;
+    }
+
+/* CHECKED HOVERED background */
+    .customToggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+      background-color: #e0389a;
+    }
+
+/* Circle (THUMB) UNCHECKED */
+    .customToggle .react-toggle-thumb {
+        background-color: white;
+    }
+
+    .customToggle.react-toggle--checked .react-toggle-thumb {
+        background-color: #242424;
+    }

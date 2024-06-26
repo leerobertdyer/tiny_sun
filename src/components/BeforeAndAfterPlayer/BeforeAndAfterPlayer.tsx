@@ -1,26 +1,9 @@
 "use client";
 import BeforeAndAfter from "@/components/BeforeAndAfter/BeforeAndAfter";
-import { useEffect, useRef, useState } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 3, // optional, default to 1.
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    slidesToSlide: 2, // optional, default to 1.
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-};
+import LoadingWheel from "@/components/LoadingWheel/LoadingWheel";
+import { shuffleArray } from "@/utils/randomizeArray";
+import {  useEffect, useState } from "react";
+import { PiPlay } from "react-icons/pi";
 
 export type Song = {
   id: string;
@@ -33,58 +16,103 @@ export type Song = {
 
 export default function BeforeAndAfterPlayer() {
   const [allSongs, setAllSongs] = useState<Song[]>([]);
-  const deviceType = useRef("desktop");
-
-  useEffect(() => {
-    if (!deviceType.current) return;
-    if (window.innerWidth < 1024) {
-      deviceType.current = "tablet";
-    }
-    if (window.innerWidth < 464) {
-      deviceType.current = "mobile";
-    }
-  }, []);
+  const [currentSong, setCurrentSong] = useState<Song | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     async function getSongs() {
       const resp = await fetch("/api/songs");
       if (resp) {
         const data = await resp.json();
-        setAllSongs(data); // Would like to either randomize this, or change the order manually in database
+        const songs = shuffleArray(data);
+        setAllSongs(songs); // Would like to either randomize this, or change the order manually in database
+        setCurrentSong(songs[0]);
+        setIsLoaded(true);
       }
     }
     getSongs();
   }, []);
 
+  function handlePlayPause() {
+    setIsPlaying(!isPlaying);
+  }
+
+  function handleInnerPlayClick(song: Song) {
+    setCurrentSong(song)
+    setIsPlaying(true)
+  }
+
   return (
-    <Carousel
-      swipeable={false}
-      draggable={false}
-      showDots={true}
-      responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
-      infinite={true}
-      autoPlay={false}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
-      deviceType={deviceType.current}
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-    >
+    <div
+      className="
+      w-[90%] max-w-[45rem]
+      min-h-[20rem]
+      m-auto
+      flex flex-col 
+      items-center justify-start 
+      bg-tinyBlue-base 
+      gap-2 
+      rounded-xl 
+      border-2 border-white
+      "
+      >
+      <h2
+        className="
+        w-full h-[3rem] 
+        pb-2 text-xl
+        bg-white 
+        rounded-t-lg 
+        flex items-center justify-center 
+        user-select-none
+        "
+        >
+        Full Production Examples
+      </h2>
+      {!isLoaded && 
+      <>
+        <p>
+          Loading...
+          </p>
+      <div className="flex flex-col items-center justify-between p-4 h-[15rem] w-[15rem] rounded-full bg-tinyBlack-light bg-opacity-90 mb-2">
+        <LoadingWheel size={3}/>
+        </div>
+      </>
+        }
+      {currentSong && (
+        <BeforeAndAfter
+        key={currentSong.id}
+        song1src={currentSong.before_audio}
+        song2src={currentSong.audio}
+        img={currentSong.image}
+        handlePlayPause={handlePlayPause}
+        isPlaying={isPlaying}
+        />
+      )}
       {allSongs &&
-        allSongs.map((song: Song) => (
-          <BeforeAndAfter
-            key={song.id}
-            song1src={song.before_audio}
-            song2src={song.audio}
-            title={song.title}
-            artist={song.artist}
-            img={song.image}
-          />
+        allSongs.map((song) => (
+          <div key={song.id} className="flex gap-4 w-full">
+            <div
+              onClick={() => setCurrentSong(song)}
+              onDoubleClick={() => handleInnerPlayClick(song)}
+              className={`
+                ${currentSong?.id === song.id && "bg-tinyPink-light"} 
+                hover:bg-tinyPink-lighter
+                hover:cursor-pointer 
+                py-2 w-full
+                flex items-center justify-center gap-4
+                `}
+                >
+              <div className="w-[22rem] m-auto flex justify-between gap-[2rem] items-center">
+                <PiPlay size={35} onClick={() => handleInnerPlayClick(song)}/>
+                <div className="w-full flex flex-col text-end">
+                  <p className="user-select-none">{song.title}</p>
+                  <p className="text-tinyBlack-light text-xs">{song.artist}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
-    </Carousel>
+    </div>
   );
 }

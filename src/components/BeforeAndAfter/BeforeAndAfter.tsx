@@ -58,26 +58,26 @@ export default function BeforeAndAfter({
   }, [isPlaying, songSwitch]);
 
   return (
-    <div className="flex flex-col items-center justify-center bg-white p-4 gap-2">
+    <div className="flex flex-col items-center justify-center bg-blue-400 p-4 gap-2 w-[1/3]">
       <h1>{title}</h1>
       <h2>{artist}</h2>
       {img && (
-        <div className="overflow-hidden border-2 border-tinyBlack-base rounded-xl">
+        <div className="w-[8rem] h-[8rem] overflow-hidden border-2 border-tinyBlack-base rounded-xl">
           <Image
             width={100}
             height={100}
             src={img}
             alt={`${title} by ${artist}`}
-            className=" object-cover w-full h-full"
+            className="object-top object-cover w-full h-full"
           />
         </div>
       )}
       <audio ref={audioRef1} src={song1src} preload="metadata" />
       <audio ref={audioRef2} src={song2src} preload="metadata" />
-      <div>
+      <div className="text-center">
         <button
           className="
-      rounded-full p-4 
+      rounded-lg p-4 
       bg-tinyOrange-light 
       border-2 border-black 
       w-[10rem]"
@@ -87,7 +87,7 @@ export default function BeforeAndAfter({
         </button>
         <button
           className="
-      rounded-full p-4 
+      rounded-lg p-4 
       bg-tinyOrange-light 
       border-2 
       border-black w-[10rem]"

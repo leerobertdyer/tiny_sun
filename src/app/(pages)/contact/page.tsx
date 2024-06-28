@@ -1,7 +1,6 @@
 'use client'
-import Button from "@/app/components/Button/Button";
-import InputField from "@/app/components/InputField/InputField";
-import { register } from "module";
+import Button from "@/components/Button/Button";
+import InputField from "@/components/InputField/InputField";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 export type FormData = {

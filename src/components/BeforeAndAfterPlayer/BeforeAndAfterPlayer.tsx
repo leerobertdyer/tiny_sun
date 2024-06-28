@@ -23,10 +23,10 @@ export default function BeforeAndAfterPlayer() {
   useEffect(() => {
     async function getSongs() {
       const resp = await fetch("/api/songs");
-      if (resp) {
+      if (resp.ok) {
         const data = await resp.json();
         const songs = shuffleArray(data);
-        setAllSongs(songs); // Would like to either randomize this, or change the order manually in database
+        setAllSongs(songs); 
         setCurrentSong(songs[0]);
         setIsLoaded(true);
       }

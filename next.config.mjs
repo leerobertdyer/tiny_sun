@@ -4,9 +4,9 @@ const nextConfig = {
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'pxscvmmpmqjtcjjlcghr.supabase.co',
+            hostname: 'tinysun.s3.us-east-2.amazonaws.com',
             port: '',
-            pathname: '/storage/v1/object/public/photos/**',
+            pathname: '/images/**',
           },
         ],
       },

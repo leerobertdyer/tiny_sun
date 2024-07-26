@@ -9,8 +9,8 @@ export type Song = {
   id: string;
   title: string;
   artist: string;
-  audio: string;
-  before_audio: string;
+  after: string;
+  before: string;
   image: string;
 };
 
@@ -82,8 +82,8 @@ export default function BeforeAndAfterPlayer() {
       {currentSong && (
         <BeforeAndAfter
         key={currentSong.id}
-        song1src={currentSong.before_audio}
-        song2src={currentSong.audio}
+        song1src={currentSong.before}
+        song2src={currentSong.after}
         img={currentSong.image}
         handlePlayPause={handlePlayPause}
         isPlaying={isPlaying}

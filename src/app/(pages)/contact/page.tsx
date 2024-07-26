@@ -1,7 +1,7 @@
 'use client'
 import Button from "@/components/Button/Button";
 import InputField from "@/components/InputField/InputField";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export type FormData = {
   name: string;

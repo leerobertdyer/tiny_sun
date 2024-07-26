@@ -1,16 +1,21 @@
-import { supabase } from "@/utils/supabase";
+import { connectToDatabase, disconnectFromDatabase } from "@/utils/mongo";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  let client;
   try {
-    const { data, error } = await supabase.from("song").select("*");
-
-    if (error) {
-      return NextResponse.json("Error getting songs: ", error.message);
-    }
-
-    return NextResponse.json(data);
+    client = await connectToDatabase();
+    const db = client.db("tinySun");
+    const collection = db.collection("songs");
+    const songs = await collection.find({}).toArray();
+    console.log(songs)
+    return NextResponse.json(songs);
   } catch (error) {
-    console.error(error);
+    console.error("Failed to retrieve songs", error);
+    throw error;
+  } finally {
+    if (client) {
+      await disconnectFromDatabase();
+    }
   }
 }

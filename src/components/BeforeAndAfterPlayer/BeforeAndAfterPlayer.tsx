@@ -91,6 +91,7 @@ export default function BeforeAndAfterPlayer() {
       )}
       {allSongs &&
         allSongs.map((song) => (
+          console.log(song),
           <div key={song.id} className="flex gap-4 w-full">
             <div
               onClick={() => setCurrentSong(song)}

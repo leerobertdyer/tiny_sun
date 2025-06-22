@@ -78,7 +78,7 @@ export default function BeforeAndAfter({
       <audio ref={audioRef1} src={song1src} />
       <audio ref={audioRef2} src={song2src} />
       <div className="flex gap-2 justify-between items-center p-2 bg-white rounded-xl">
-        <span className={`${songSwitch === 0 && 'bg-tinyBlack-light text-white pb-[10px]'} rounded-lg p-2 leading-3`}>
+        <span className={`${songSwitch === 0 && 'bg-tinyBlack-light text-white pb-[10px] animate-pulse'} rounded-lg p-2 leading-3`}>
           Before
           </span>
         <Toggle
@@ -92,7 +92,7 @@ export default function BeforeAndAfter({
           value="yes"
           onChange={handleSwitch}
         />
- <span className={`${songSwitch === 1 && 'bg-tinyOrange-light pb-[10px]'} rounded-lg p-2 leading-3`}>
+ <span className={`${songSwitch === 1 && 'bg-tinyOrange-light pb-[10px] animate-pulse'} rounded-lg p-2 leading-3`}>
           After
           </span>
       </div>

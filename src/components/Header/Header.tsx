@@ -59,7 +59,7 @@ export default function Header() {
             />
           </div>
         </div>
-        <Nav links={["Home", "About", "Services", "Contact"]} />
+        <Nav links={["Home", "About", "Contact"]} />
       </div>
     </>
   );

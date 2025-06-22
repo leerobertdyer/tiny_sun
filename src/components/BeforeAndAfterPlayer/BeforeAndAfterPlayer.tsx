@@ -6,7 +6,7 @@ import {  useEffect, useState } from "react";
 import { PiPlay } from "react-icons/pi";
 
 export type Song = {
-  id: string;
+  _id: string;
   title: string;
   artist: string;
   after: string;
@@ -81,7 +81,7 @@ export default function BeforeAndAfterPlayer() {
         }
       {currentSong && (
         <BeforeAndAfter
-        key={currentSong.id}
+        key={currentSong._id}
         song1src={currentSong.before}
         song2src={currentSong.after}
         img={currentSong.image}
@@ -91,13 +91,12 @@ export default function BeforeAndAfterPlayer() {
       )}
       {allSongs &&
         allSongs.map((song) => (
-          console.log(song),
-          <div key={song.id} className="flex gap-4 w-full">
+          <div key={song._id} className="flex gap-4 w-full">
             <div
               onClick={() => setCurrentSong(song)}
               onDoubleClick={() => handleInnerPlayClick(song)}
               className={`
-                ${currentSong?.id === song.id && "bg-tinyPink-light"} 
+                ${currentSong?._id === song._id && "bg-tinyPink-light"} 
                 hover:bg-tinyPink-lighter
                 hover:cursor-pointer 
                 py-2 w-full
@@ -105,7 +104,7 @@ export default function BeforeAndAfterPlayer() {
                 `}
                 >
               <div className="w-[22rem] m-auto flex justify-between gap-[2rem] items-center">
-                <PiPlay size={35} onClick={() => handleInnerPlayClick(song)}/>
+                <PiPlay key={`playButton-${song._id}`} size={35} onClick={() => handleInnerPlayClick(song)}/>
                 <div className="w-full flex flex-col text-end">
                   <p className="user-select-none">{song.title}</p>
                   <p className="text-tinyBlack-light text-xs">{song.artist}</p>
